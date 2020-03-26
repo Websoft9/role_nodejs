@@ -22,7 +22,7 @@ Ansible Role: node.js
 ```
 roles:
     - {role: role_common, tags: "role_common"}
-    - {role: role_node.js , tags: "role_node.js  "}
+    - {role: role_nodejs , tags: "role_nodejs  "}
 ```
 
 
