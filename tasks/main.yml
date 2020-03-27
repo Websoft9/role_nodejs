@@ -4,6 +4,11 @@
 - import_tasks: Debian.yml
   when: ansible_os_family == 'Debian' 
 
+- name: Install PM2
+  npm:
+    name: pm2
+    global: yes
+
 - name: Check Node.js Version
   shell: node -v
   register: node_ver
