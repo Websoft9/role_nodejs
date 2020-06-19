@@ -1,7 +1,7 @@
 Ansible Role: node.js
 =========
 
-本 Role 用于在PHP运行环境下安装 [node.js](https://nodejs.org/en/)。
+本 Role 用于在PHP运行环境下安装 [node.js](https://nodejs.org/en/) and NPM, YARN。
 
 ## Requirements
 
