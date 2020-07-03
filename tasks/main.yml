@@ -10,6 +10,4 @@
     global: yes
 
 - name: Check Node.js Version
-  shell: node -v
-  register: node_ver
-  notify: Node.js Version
+  shell: sudo sh -c 'echo "Node.js versio is $(node -v)" 1>> /data/logs/install_version.txt'
