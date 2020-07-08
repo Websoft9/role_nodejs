@@ -1,12 +1,9 @@
-- import_tasks: RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Install this role on {{ansible_os_family}}
+  include: "{{ansible_os_family}}.yml"
 
-- import_tasks: Debian.yml
-  when: ansible_os_family == 'Debian' 
-
-- name: Install PM2
+- name: Install PM2,M Module
   npm:
-    name: pm2
+    name: [pm2,m]
     global: yes
 
 - name: Check Node.js Version
