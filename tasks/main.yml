@@ -1,9 +1,9 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-- name: Install PM2,M Module
-  npm:
-    name: [pm2,m]
+- name: NPM Install PM2,M Module
+  shell:
+    name: [pm2 n]
     global: yes
 
 - name: Check Node.js Version
