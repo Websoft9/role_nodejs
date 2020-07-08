@@ -1,7 +1,7 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-- name: NPM Install PM2,M Module
+- name: NPM Install Modules
   npm:
     name: [pm2,n,inherits]
     global: yes
