@@ -2,7 +2,7 @@
   include: "{{ansible_os_family}}.yml"
 
 - name: NPM Install PM2,M Module
-  shell:
+  npm:
     name: [pm2 n inherits]
     global: yes
 
