@@ -2,9 +2,7 @@
   include: "{{ansible_os_family}}.yml"
 
 - name: NPM Install Modules
-  npm:
-    name: [pm2,n,inherits]
-    global: yes
+  shell: npm install pm2 n inherits -g
 
 - name: Check Node.js Version
   shell: sudo sh -c 'echo "Node.js versio is $(node -v)" 1>> /data/logs/install_version.txt'
