@@ -3,7 +3,7 @@
 
 - name: NPM Install PM2,M Module
   npm:
-    name: [pm2 n inherits]
+    name: [pm2,n,inherits]
     global: yes
 
 - name: Check Node.js Version
