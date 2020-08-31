@@ -1,1 +1,4 @@
 nodejs_version: "10"
+
+#nodejs_applications:
+#  - vue
