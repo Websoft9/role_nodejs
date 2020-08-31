@@ -3,6 +3,11 @@
 
 - name: NPM Install Modules
   shell: npm install pm2 n inherits -g
+  
+- name: Install Node.js applications
+  include_tasks: apps_{{item}}.yml
+  with_items: "{{nodejs_applications}}"
+  when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
 - name: Check Node.js Version
   shell: sudo sh -c 'echo "Node.js versio is $(node -v)" 1>> /data/logs/install_version.txt'
