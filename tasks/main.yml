@@ -8,12 +8,15 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-# install and use node.js,use npm install yarn
+# install and use node.js,use npm install yarn,pm2,n
 - name: Install Node.js and yarn  
   shell: |
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
     npm install -g yarn
+    npm install pm2 n inherits -g
+  args:
+    executable: /bin/bash
 
 - name: NPM Install Modules
   shell: npm install pm2 n inherits -g
