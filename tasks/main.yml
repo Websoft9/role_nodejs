@@ -1,15 +1,13 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-# instasll nvm
 - name: Install nvm 
   shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{nodejs_nvm_version}}/install.sh | bash
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-# install and use node.js,use npm install yarn,pm2,n
-- name: Install Node.js and yarn  
+- name: Install Node.js,npm and yarn  
   shell: |
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
