@@ -7,7 +7,11 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
+<<<<<<< HEAD
 - name: Install Node.js and yarn  
+=======
+- name: Install Node.js,npm and yarn  
+>>>>>>> 0df4238470a9f089d60dac71d34636631a8aa488
   shell: |
     source {{ ansible_env.HOME }}/.nvm/nvm.sh
     nvm install {{nodejs_version}} 
