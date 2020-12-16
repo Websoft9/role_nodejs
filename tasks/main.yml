@@ -1,13 +1,27 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
+# instasll nvm
+- name: Install nvm 
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{nodejs_nvm_version}}/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+# install and use node.js,use npm install yarn
+- name: Install Node.js and yarn  
+  shell: |
+    nvm install {{nodejs_version}} 
+    nvm use {{nodejs_version}} 
+    npm install -g yarn
+
 - name: NPM Install Modules
   shell: npm install pm2 n inherits -g
-  
+
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
   with_items: "{{nodejs_applications}}"
   when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
 - name: Check Node.js Version
-  shell: sudo sh -c 'echo "Node.js versio is $(node -v)" 1>> /data/logs/install_version.txt'
+  shell: sudo sh -c 'echo "Node.js version is $(node -v)" 1>> /data/logs/install_version.txt'
