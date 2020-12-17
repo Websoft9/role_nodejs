@@ -5,19 +5,19 @@ Theis role is used for installing NVM, [Node](https://nodejs.org/en/) and YARN, 
 
 ## Requirements
 
-运行本 Role，请确认符合如下的必要条件：
+Make sure these requirements need before the installation:
 
 | **Items**      | **Details** |
 | ------------------| ------------------|
 | Operating system | CentOS7.x Ubuntu18.04 AmazonLinux |
-| Python 版本 | Python2  |
-| Python 组件 |    |
+| Python version	 | Python2, Python3 |
+| Python components |    |
 | Runtime |  |
 
 
 ## Related roles
 
-本 Role 在运行时需要确保已经运行：common。以下为例：
+This Role does not depend on other role variables in syntax, but it depend on other role before:
 
 ```
 roles:
@@ -25,33 +25,29 @@ roles:
     - {role: role_nodejs , tags: "role_nodejs  "}
 ```
 
-
 ## Variables
 
-本 Role 主要变量以及使用方法如下：
+The main variables of this Role and how to use them are as follows:
 
-| **Items**      | **Details** | **Format**  | **是否初始化** |
+| **Items**      | **Details** | **Format**  | **Need to assignment** |
 | ------------------| ------------------|-----|-----|
-| nodejs_ver | [ 10 ] | 字符串 | 否 |
+| nodejs_version | e.g "10" | String | No |
+| nodejs_applications | - Express | List | No |
 
+Note: 
+
+1. docker_applications is used to install more than two applications
 
 
 ## Example
 
 ```
-- name: Node.js
-  hosts: all
-  become: yes
-  become_method: sudo 
-  vars_files:
-    - vars/main.yml 
-
-  roles:
-    - { role: role_common }
-    - { role: role_node.js   }
-    ...
+nodejs_version: "14"
+nodejs_applications
+  - express
 ```
 
 ## FAQ
 
-
+#### Could this role support muti-version of Node?
+Their only one version for default installation, but you can use `nvm` to install more version of Node
