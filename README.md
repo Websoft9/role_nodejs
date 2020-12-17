@@ -1,7 +1,7 @@
 Ansible Role: node.js
 =========
 
-本 Role 用于在PHP运行环境下安装 NVM, [node.js](https://nodejs.org/en/) and NPM, YARN。
+Theis role is used for installing NVM, [Node](https://nodejs.org/en/) and YARN, it include some useful tool of Node, e.g  NPM, PM2
 
 ## Requirements
 
