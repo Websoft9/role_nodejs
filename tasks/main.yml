@@ -9,12 +9,14 @@
 
 - name: Install Node.js,npm and yarn  
   shell: |
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    source {{ ansible_env.HOME }}/.nvm/nvm.sh
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
     npm install -g yarn
     npm install pm2 n inherits -g
+    source {{ ansible_env.HOME }}/.bashrc
+  args:
+    executable: /bin/bash
 
 
 - name: Install Node.js applications
