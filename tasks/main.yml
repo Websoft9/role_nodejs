@@ -5,18 +5,16 @@
   shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{nodejs_nvm_version}}/install.sh | bash
   args:
-    creates: "/etc/profile.d/nvm.sh"
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
 - name: Install Node.js,npm and yarn  
   shell: |
-    source /etc/profile.d/nvm.sh
+    source {{ ansible_env.HOME }}/.bashrc
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
     npm install -g yarn
     npm install pm2 n inherits -g
     source /root/.bash_profile
-  args:
-    executable: /bin/bash
 
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
@@ -24,4 +22,4 @@
   when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
 - name: Check Node.js Version
-  shell: sudo sh -c 'echo "Node.js version is $(node -v)" 1>> /data/logs/install_version.txt'
+  shell: sudo echo $(node -v) |sudo tee -a /data/logs/install_version.txt
