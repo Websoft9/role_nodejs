@@ -15,7 +15,7 @@
     nvm use {{nodejs_version}} 
     npm install -g yarn
     npm install pm2 n inherits -g
-    source /root/.bash_profile
+
 
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
