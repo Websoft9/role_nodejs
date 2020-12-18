@@ -8,8 +8,8 @@
   
 - name: Install nvm 
   shell: |
-    export NVM_DIR=/opt/nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{nodejs_nvm_version}}/install.sh | bash
+    export NVM_DIR={{node_nvm_dir}}
+    curl -o- {{node_nvm_url}} | bash
 
 - name: Install Node.js,npm and yarn  
   shell: |
@@ -21,13 +21,21 @@
   args:
     executable: /bin/bash
 
+- name: Get node version
+  shell: ls /opt/nvm/versions/node/
+  register: node_dir_name
+
+- name: Get node version
+  shell: ls /opt/nvm/versions/node/*/bin/
+  register: node_clis
+
 - name: Create link
   file:
-    src: '/opt/nvm/versions/node/v*/bin/{{item}}'
-    dest: '/usr/bin/'
+    src: '/opt/nvm/versions/node/{{node_dir_name.stdout}}/bin/{{item}}'
+    dest: '/usr/bin/{{item}}'
     state: link
     force: yes
-  with_items: ["n","node","npm","npx","pm2","pm2-dev","pm2-docker","pm2-runtime","yarn","yarnpkg"]
+  with_items: "{{node_clis.stdout_lines |list}}"
    
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
