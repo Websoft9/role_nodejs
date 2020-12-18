@@ -18,6 +18,9 @@
   args:
     executable: /bin/bash
 
+- name:reboot
+  reboot:
+
 
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
