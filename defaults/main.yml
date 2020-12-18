@@ -1,4 +1,6 @@
 nodejs_version: "10"
+node_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
+node_nvm_dir: "/opt/nvm"
 
 #nodejs_applications:
 #  - vue

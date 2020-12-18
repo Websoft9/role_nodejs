@@ -1,13 +1,46 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-- name: NPM Install Modules
-  shell: npm install pm2 n inherits -g
+- name: Create nvm directory
+  file:
+    path: /opt/nvm
+    state: directory
   
+- name: Install nvm 
+  shell: |
+    export NVM_DIR={{node_nvm_dir}}
+    curl -o- {{node_nvm_url}} | bash
+
+- name: Install Node.js,npm and yarn  
+  shell: |
+    source {{ ansible_env.HOME }}/.bashrc
+    nvm install {{nodejs_version}} 
+    nvm use {{nodejs_version}} 
+    npm install -g yarn
+    npm install pm2 n inherits -g 
+  args:
+    executable: /bin/bash
+
+- name: Get node version
+  shell: ls /opt/nvm/versions/node/
+  register: node_dir_name
+
+- name: Get node version
+  shell: ls /opt/nvm/versions/node/*/bin/
+  register: node_clis
+
+- name: Create link
+  file:
+    src: '/opt/nvm/versions/node/{{node_dir_name.stdout}}/bin/{{item}}'
+    dest: '/usr/bin/{{item}}'
+    state: link
+    force: yes
+  with_items: "{{node_clis.stdout_lines |list}}"
+   
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
   with_items: "{{nodejs_applications}}"
   when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
 - name: Check Node.js Version
-  shell: sudo sh -c 'echo "Node.js versio is $(node -v)" 1>> /data/logs/install_version.txt'
+  shell: sudo echo "Node.js version is" $(node -v) |sudo tee -a /data/logs/install_version.txt
