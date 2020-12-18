@@ -1,27 +1,34 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
+- name: Create nvm directory
+  file:
+    path: /opt/nvm
+    state: directory
+  
 - name: Install nvm 
-  shell: >
+  shell: |
+    export NVM_DIR=/opt/nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{nodejs_nvm_version}}/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
 - name: Install Node.js,npm and yarn  
   shell: |
-    source {{ ansible_env.HOME }}/.nvm/nvm.sh
+    source {{ ansible_env.HOME }}/.bashrc
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
     npm install -g yarn
-    npm install pm2 n inherits -g
-    source {{ ansible_env.HOME }}/.bashrc
+    npm install pm2 n inherits -g 
   args:
     executable: /bin/bash
 
-- name: reboot
-  reboot:
-
-
+- name: Create link
+  file:
+    src: '/opt/nvm/versions/node/v*/bin/{{item}}'
+    dest: '/usr/bin/'
+    state: link
+    force: yes
+  with_items: ["n","node","npm","npx","pm2","pm2-dev","pm2-docker","pm2-runtime","yarn","yarnpkg"]
+   
 - name: Install Node.js applications
   include_tasks: apps_{{item}}.yml
   with_items: "{{nodejs_applications}}"
