@@ -18,7 +18,7 @@
   args:
     executable: /bin/bash
 
-- name:reboot
+- name: reboot
   reboot:
 
 
