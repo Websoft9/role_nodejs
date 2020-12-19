@@ -24,7 +24,7 @@
 - name: Install Demo Project module
   shell: |
     npm install 
-    pm2 start bin/www --name express
+    pm2 start bin/www --name express --log /data/logs 
     pm2 save
     pm2 startup
   args:
