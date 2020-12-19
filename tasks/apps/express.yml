@@ -1,13 +1,8 @@
-- name: Create express directory
-  file:
-    path: /data/apps/express
-    state: directory
-
 - name: Install Express Generator
   npm:
     name: "{{ item }}"
     global: yes
-    path: /data/apps/express
+    path: /data/wwwroot
   with_items:
     - express-generator 
     - express
@@ -15,8 +10,8 @@
 # don't use www.example.com which will be removed by 9Panel
 - name: Create express Demo Project
   shell: |
-    rm -rf express.example.com
-    express express.example.com
+    test -d express && rm -rf express
+    express express
   args:
     chdir: /data/wwwroot/
 
@@ -27,7 +22,7 @@
     pm2 save
     pm2 startup
   args:
-    chdir: /data/wwwroot/express.example.com
+    chdir: /data/wwwroot/express
 
 - name: Start pm2 
   service:
