@@ -21,6 +21,13 @@
   args:
     chdir: /data/wwwroot/
 
+- name: Set express port
+  lineinfile:
+      dest: /data/wwwroot/express/bin/www
+      regexp: "var.*3000.*"
+      line: "var port = normalizePort(process.env.PORT || '{{nodejs_applications_express.port}}');"
+      backrefs: yes
+  
 - name: Install Demo Project module
   shell: |
     npm install 

@@ -10,4 +10,4 @@ nodejs_applications_vue:
   port:
 
 nodejs_applications_express: 
-  port:
+  port: "3000"
