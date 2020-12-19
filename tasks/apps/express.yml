@@ -1,7 +1,16 @@
+- name: Create express directory
+  file:
+    path: /data/apps/express
+    state: directory
+
 - name: Install Express Generator
   npm:
-    name: express-generator
+    name: "{{ item }}"
     global: yes
+    path: /data/apps/express
+  with_items:
+    - express-generator 
+    - express
 
 # don't use www.example.com which will be removed by 9Panel
 - name: Create express Demo Project
