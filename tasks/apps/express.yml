@@ -2,7 +2,6 @@
   npm:
     name: "{{ item }}"
     global: yes
-    path: /data/wwwroot
   with_items:
     - express-generator 
     - express
