@@ -1,0 +1,27 @@
+- name: Install Express Generator
+  npm:
+    name: express-generator
+    global: yes
+
+# don't use www.example.com which will be removed by 9Panel
+- name: Create express Demo Project
+  shell: |
+    rm -rf express.example.com
+    express express.example.com
+  args:
+    chdir: /data/wwwroot/
+
+- name: Install Demo Project module
+  shell: |
+    npm install 
+    pm2 start bin/www
+    pm2 save
+    pm2 startup
+  args:
+    chdir: /data/wwwroot/express.example.com
+
+- name: Start pm2 
+  service:
+    name: pm2-root
+    state: restarted
+    enabled: yes
