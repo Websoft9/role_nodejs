@@ -6,6 +6,13 @@
     - express-generator 
     - express
 
+- name: Create link
+  file:
+    src: '/opt/nvm/versions/node/{{nodejs_dir_name.stdout}}/bin/express'
+    dest: '/usr/bin/express'
+    state: link
+    force: yes
+  
 # don't use www.example.com which will be removed by 9Panel
 - name: Create express Demo Project
   shell: |
@@ -17,7 +24,7 @@
 - name: Install Demo Project module
   shell: |
     npm install 
-    pm2 start bin/www
+    pm2 start bin/www --name express
     pm2 save
     pm2 startup
   args:
@@ -28,4 +35,6 @@
     name: pm2-root
     state: restarted
     enabled: yes
+
+
 
