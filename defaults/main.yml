@@ -5,5 +5,5 @@ nodejs_nvm_dir: "/opt/nvm"
 nodejs_applications_vue:
   name: 
     
-#nodejs_applications:
-#  - vue
+nodejs_applications:
+  - express
