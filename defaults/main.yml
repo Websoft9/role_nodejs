@@ -1,6 +1,13 @@
 nodejs_version: "10"
-node_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
-node_nvm_dir: "/opt/nvm"
+nodejs_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
+nodejs_nvm_dir: "/opt/nvm"
 
-#nodejs_applications:
-#  - vue
+nodejs_applications: []
+  # - express
+  # - vue
+
+nodejs_applications_vue: 
+  port:
+
+nodejs_applications_express: 
+  port: "3000"

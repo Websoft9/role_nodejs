@@ -1,0 +1,47 @@
+- name: Install Express Generator
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - express-generator 
+    - express
+
+- name: Create link
+  file:
+    src: '/opt/nvm/versions/node/{{nodejs_dir_name.stdout}}/bin/express'
+    dest: '/usr/bin/express'
+    state: link
+    force: yes
+  
+# don't use www.example.com which will be removed by 9Panel
+- name: Create express Demo Project
+  shell: |
+    test -d express && rm -rf express
+    express express
+  args:
+    chdir: /data/wwwroot/
+
+- name: Set express port
+  lineinfile:
+      dest: /data/wwwroot/express/bin/www
+      regexp: "var.*3000.*"
+      line: "var port = normalizePort(process.env.PORT || '{{nodejs_applications_express.port}}');"
+      backrefs: yes
+  
+- name: Install Demo Project module
+  shell: |
+    npm install 
+    pm2 start bin/www --name express 
+    pm2 save
+    pm2 startup
+  args:
+    chdir: /data/wwwroot/express
+
+- name: Start pm2 
+  service:
+    name: pm2-root
+    state: restarted
+    enabled: yes
+
+
+

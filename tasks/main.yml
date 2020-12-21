@@ -8,12 +8,12 @@
   
 - name: Install nvm 
   shell: |
-    export NVM_DIR={{node_nvm_dir}}
-    curl -o- {{node_nvm_url}} | bash
+    export NVM_DIR={{nodejs_nvm_dir}}
+    curl -o- {{nodejs_nvm_url}} | bash
 
 - name: Install Node.js,npm and yarn  
   shell: |
-    source {{ ansible_env.HOME }}/.bashrc
+    source /opt/nvm/nvm.sh
     nvm install {{nodejs_version}} 
     nvm use {{nodejs_version}} 
     npm install -g yarn
@@ -23,22 +23,22 @@
 
 - name: Get node version
   shell: ls /opt/nvm/versions/node/
-  register: node_dir_name
+  register: nodejs_dir_name
 
-- name: Get node version
+- name: Get node clis
   shell: ls /opt/nvm/versions/node/*/bin/
-  register: node_clis
+  register: nodejs_clis
 
 - name: Create link
   file:
-    src: '/opt/nvm/versions/node/{{node_dir_name.stdout}}/bin/{{item}}'
+    src: '/opt/nvm/versions/node/{{nodejs_dir_name.stdout}}/bin/{{item}}'
     dest: '/usr/bin/{{item}}'
     state: link
     force: yes
-  with_items: "{{node_clis.stdout_lines |list}}"
+  with_items: "{{nodejs_clis.stdout_lines |list}}"
    
 - name: Install Node.js applications
-  include_tasks: apps_{{item}}.yml
+  include_tasks: apps/{{item}}.yml
   with_items: "{{nodejs_applications}}"
   when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
