@@ -1,3 +1,6 @@
+# support v0.1.14 to latest, almost all versions
+# run command `nvm ls-remote` to list all version can be install
+
 nodejs_version: "10"
 nodejs_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
 nodejs_nvm_dir: "/opt/nvm"
