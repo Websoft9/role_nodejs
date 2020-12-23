@@ -51,3 +51,6 @@ nodejs_applications
 
 #### Could this role support muti-version of Node?
 Their only one version for default installation, but you can use `nvm` to install more version of Node
+
+#### Which Node version can be installed?
+Run the command `nvm ls-remote`, you can list all versions can be installed, seems almost all Node versions
