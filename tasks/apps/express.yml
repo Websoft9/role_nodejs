@@ -31,17 +31,10 @@
 - name: Install Demo Project module
   shell: |
     npm install 
-    pm2 start bin/www --name express 
+    pm2 start bin/www
     pm2 save
     pm2 startup
   args:
     chdir: /data/wwwroot/express
-
-- name: Start pm2 
-  service:
-    name: pm2-root
-    state: restarted
-    enabled: yes
-
 
 
