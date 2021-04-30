@@ -5,8 +5,8 @@ nodejs_version: "10"
 nodejs_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
 nodejs_nvm_dir: "/opt/nvm"
 
-# useful packages for Node, install -g
-noejs_packages: []
+# useful extra packages for Node, install -g
+noejs_packages_extra: []
   #- bower
   #- gulp
 
