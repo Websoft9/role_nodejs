@@ -42,5 +42,10 @@
   with_items: "{{nodejs_applications}}"
   when: nodejs_applications is defined and nodejs_applications is not none and nodejs_applications != "" and nodejs_applications[0]!= ""
 
+- name: Copy env file to /etc/profile.d for ordinary users to use Node
+  copy:
+    src: nvm.sh
+    dest: /etc/profile.d/nvm.sh
+
 - name: Check Node.js Version
   shell: sudo echo "Node.js version is" $(node -v) |sudo tee -a /data/logs/install_version.txt
