@@ -39,7 +39,7 @@
 
 # check versions:
 - name: Check pm2 version
-  shell:  sudo echo  $(pm2 -v) |sudo tee -a /data/logs/install_version.txt
+  shell:  sudo echo "pm2 version:" $(pm2 -v) |sudo tee -a /data/logs/install_version.txt
 
 - name: Check express version
-  shell:  sudo echo  $(express --version) |sudo tee -a /data/logs/install_version.txt
+  shell:  sudo echo "express version:" $(express --version) |sudo tee -a /data/logs/install_version.txt
