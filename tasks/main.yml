@@ -48,4 +48,6 @@
     dest: /etc/profile.d/nvm.sh
 
 - name: Check Node.js Version
-  shell: sudo echo "Node.js version is" $(node -v) |sudo tee -a /data/logs/install_version.txt
+  shell: |
+    sudo echo "Node.js version is" $(node -v) |sudo tee -a /data/logs/install_version.txt
+    sudo echo "NVM version is" $(nvm -v) | sudo tee -a /data/logs/install_version.txt
