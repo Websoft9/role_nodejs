@@ -4,18 +4,17 @@
 nodejs_version: "14"
 
 # useful extra packages for Node, yarn global add
-#noejs_packages_default: []
-  #- bower
+noejs_packages_default:
+  - bower
   
 # useful extra packages for Node, yarn global add
-#noejs_packages_extra: []
+noejs_packages_extra: []
   #- gulp
   #- @vue/cli
   #- @angular/cli
 
 nodejs_applications: []
   # - express
-  # - vue
 
 nodejs_applications_vue: 
   port:
