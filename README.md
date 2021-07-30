@@ -45,6 +45,8 @@ Note:
 nodejs_version: "14"
 nodejs_applications
   - express
+  - vue
+  - angular
 ```
 
 ## FAQ
