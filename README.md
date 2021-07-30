@@ -48,10 +48,10 @@ nodejs_applications
   - express
   
 noejs_packages_extra: []
-  #- bower
-  #- gulp
-  #- @vue/cli
-  #- @angular/cli
+  - bower
+  - gulp
+  - @vue/cli
+  - @angular/cli
 ```
 
 ## FAQ
