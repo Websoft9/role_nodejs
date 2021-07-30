@@ -43,10 +43,15 @@ Note:
 
 ```
 nodejs_version: "14"
+
 nodejs_applications
   - express
-  - vue
-  - angular
+  
+noejs_packages_extra: []
+  #- bower
+  #- gulp
+  #- @vue/cli
+  #- @angular/cli
 ```
 
 ## FAQ
