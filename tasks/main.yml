@@ -21,6 +21,22 @@
   args:
     executable: /bin/bash
 
+- name: Install default tools for nodejs
+  shell: |
+    yarn -g install {{item}}
+  args:
+    executable: /bin/bash
+  with_items: "{{nodejs_packages_default}}"
+  when: nodejs_packages_default is defined and nodejs_packages_default != none
+
+- name: Install extra tools for nodejs
+  shell: |
+    yarn -g install {{item}}
+  args:
+    executable: /bin/bash
+  with_items: "{{nodejs_packages_extra}}"
+  when: nodejs_packages_extra is defined and nodejs_packages_extra != none
+  
 - name: Get node version
   shell: ls /opt/nvm/versions/node/
   register: nodejs_dir_name
