@@ -23,7 +23,7 @@
 
 - name: Install default tools for nodejs
   shell: |
-    yarn -g install {{item}}
+    yarn global add {{item}}
   args:
     executable: /bin/bash
   with_items: "{{nodejs_packages_default}}"
@@ -31,7 +31,7 @@
 
 - name: Install extra tools for nodejs
   shell: |
-    yarn -g install {{item}}
+    yarn global add {{item}}
   args:
     executable: /bin/bash
   with_items: "{{nodejs_packages_extra}}"
