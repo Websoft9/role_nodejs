@@ -1,1 +1,2 @@
-
+nodejs_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
+nodejs_nvm_dir: "/opt/nvm"

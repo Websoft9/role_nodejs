@@ -2,13 +2,13 @@
 # run command `nvm ls-remote` to list all version can be install
 
 nodejs_version: "14"
-nodejs_nvm_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh"
-nodejs_nvm_dir: "/opt/nvm"
 
-# useful extra packages for Node, install -g
+# useful extra packages for Node, yarn global add
 noejs_packages_extra: []
   #- bower
   #- gulp
+  #- @vue/cli
+  #- @angular/cli
 
 nodejs_applications: []
   # - express
