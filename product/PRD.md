@@ -13,5 +13,5 @@ Some popular framework or application based on Node, you define it as applicatio
 This role should some application, e.g
 
 * express
-* vue
-* react
+* @vue/cli
+* @react/cli
