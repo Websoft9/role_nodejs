@@ -12,6 +12,8 @@
       4: NodeJS 14.x\n
       5: NodeJS 15.x\n
       6: NodeJS 16.x\n"
+      private: no
+      default: 4
   
   vars: 
     nodejs_version_select:
