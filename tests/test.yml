@@ -3,3 +3,23 @@
   remote_user: root
   roles:
     - role_nodejs
+  vars_prompt:
+    - name: 'nodejs_version_selection'
+      prompt: "Please choose the number for nodejs version [ 1/2/../6] \n\n
+      1: NodeJS 10.x\n
+      2: NodeJS 12.x\n
+      3: NodeJS 13.x\n
+      4: NodeJS 14.x\n
+      5: NodeJS 15.x\n
+      6: NodeJS 16.x\n"
+  
+  vars: 
+    nodejs_version_select:
+      '1': '10'
+      '2': '12'
+      '3': '13'
+      '4': '14'
+      '5': '15'
+      '6': '16'
+    
+    nodejs_version: "{{nodejs_version_select[nodejs_version_selection]}}"
