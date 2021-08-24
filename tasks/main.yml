@@ -24,6 +24,7 @@
 
 - name: Install default tools for nodejs
   shell: |
+    source /opt/nvm/nvm.sh
     yarn global add {{item}}
   args:
     executable: /bin/bash
