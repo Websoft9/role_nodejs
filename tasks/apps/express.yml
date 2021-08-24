@@ -2,7 +2,6 @@
   npm:
     name: "{{ item }}"
     global: yes
-  fail
   with_items:
     - express-generator 
     - express
