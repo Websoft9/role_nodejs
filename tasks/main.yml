@@ -40,7 +40,9 @@
   
 - name: Nvm make currently installed version effective immediately
   shell: nvm exec {{nodejs_version}} node --version
-   
+  args:
+    executable: /bin/bash
+    
 - name: Install Node.js applications
   include_tasks: apps/{{item}}.yml
   with_items: "{{nodejs_applications}}"
