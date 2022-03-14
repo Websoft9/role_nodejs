@@ -38,7 +38,11 @@
     executable: /bin/bash
   with_items: "{{nodejs_packages_extra}}"
   when: nodejs_packages_extra is defined and nodejs_packages_extra != none
-    
+
+- name: Get node version
+  shell: ls /opt/nvm/versions/node/
+  register: nodejs_dir_name
+
 - name: Install Node.js applications
   include_tasks: apps/{{item}}.yml
   with_items: "{{nodejs_applications}}"
