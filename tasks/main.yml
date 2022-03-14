@@ -38,7 +38,7 @@
   with_items: "{{nodejs_packages_extra}}"
   when: nodejs_packages_extra is defined and nodejs_packages_extra != none
   
-- name: Nvm export, currently installed version effective immediately
+- name: Nvm make currently installed version effective immediately
   shell: nvm exec {{nodejs_version}} node --version
    
 - name: Install Node.js applications
